@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, '/client/src'),
+  entry: path.resolve(__dirname, 'client/src/index.jsx'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '/client/public'),
+    path: path.resolve(__dirname, 'client/public/'),
   },
   mode: 'development',
   devtool: 'inline-source-map',
@@ -16,10 +16,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
-      }
+      },
     ],
-  }
-}; 
+  },
+};
