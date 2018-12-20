@@ -1,4 +1,4 @@
-let watchPhotos = [
+const watchPhotos = [
   {
     wid: 100,
     frontImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_back.jpg',
@@ -167,3 +167,5 @@ let watchPhotos = [
     styleImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/120_style.jpg',
   },
 ];
+
+export default watchPhotos;
