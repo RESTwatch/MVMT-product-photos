@@ -2,14 +2,11 @@ const mongoose = require('mongoose');
 const dataScript = require('../data_generation/data_script');
 
 
-mongoose.connect('mongodb://localhost/photos');
+mongoose.connect('mongodb://localhost/photos', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('DB connected!');
-});
 
 const photosSchema = new mongoose.Schema({
   wid: Number,
@@ -36,4 +33,15 @@ data.forEach((record) => {
   });
 });
 
+const getPhotosById = (watchId, serverCB) => {
+  Photos.find({wid: Number(watchId)}, (err, results) => {
+    if (err) {
+      serverCB(err);
+    } else {
+      serverCB(results);
+    }
+  });
+};
+
 module.exports.Photos = Photos;
+module.exports.getPhotosById = getPhotosById;
