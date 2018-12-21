@@ -9,7 +9,7 @@
   "scripts": {
     "react-dev": "webpack --watch",
     "start": "nodemon server/index.js",
-    "seed-db": "node db/index.js & exit"
+    "seed-db": "node data_generation/data_script.js & exit"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

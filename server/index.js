@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const Photos = require('../db/index');
+const { getPhotosById } = require('../db/index.js');
 
 const app = express();
 const PORT = 3001;
@@ -20,7 +20,7 @@ app.get('/api/watches/:wid/photos', (req, res, next) => {
   if (watchId === undefined) {
     res.status(404).end();
   } else {
-    Photos.getPhotosById(watchId, (err, results) => {
+    getPhotosById(watchId, (err, results) => {
       if (err) {
         next(err);
       } else {
