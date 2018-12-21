@@ -1,6 +1,6 @@
-import data from '../data_generation/data';
-
 const mongoose = require('mongoose');
+const dataScript = require('../data_generation/data_script');
+
 
 mongoose.connect('mongodb://localhost/photos');
 
@@ -21,6 +21,8 @@ const photosSchema = new mongoose.Schema({
 });
 
 const Photos = mongoose.model('Photos', photosSchema);
+
+const data = dataScript(100, 199);
 
 data.forEach((record) => {
   const watchPhotos = new Photos(record);
