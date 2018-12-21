@@ -1,7 +1,7 @@
 module.exports = (min, max) => {
   const watchPhotos = [];
 
-  for (let i = min; i < max; i + 1) {
+  for (let i = min; i <= max; i += 1) {
     watchPhotos.push(
       {
         wid: i,
