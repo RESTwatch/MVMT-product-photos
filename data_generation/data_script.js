@@ -1,6 +1,7 @@
 module.exports = (min, max) => {
   const watchPhotos = [];
 
+<<<<<<< HEAD
   for (let i = min; i < max; i += 1) {
     const randomPhotoNum = () => {
       const low = 100;
@@ -8,6 +9,9 @@ module.exports = (min, max) => {
       return Math.floor(Math.random() * (high - low + 1)) + low;
     };
 
+=======
+  for (let i = min; i <= max; i += 1) {
+>>>>>>> 9ed72d63f729ffdfb17c5126f71460f21e90adb2
     watchPhotos.push(
       {
         wid: i,
