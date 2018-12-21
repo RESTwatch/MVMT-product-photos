@@ -9,12 +9,13 @@
   "scripts": {
     "react-dev": "webpack --watch",
     "start": "nodemon server/index.js",
-    "seed-db": "node db/index.js"
+    "seed-db": "node db/index.js & exit"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.0",
+    "morgan": "^1.9.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "request": "^2.88.0"
