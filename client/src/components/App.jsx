@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: []
+      photos: {}
     }
   }
 
@@ -21,7 +21,7 @@ class App extends React.Component {
     })
     .then((photos) => {
       this.setState({
-        photos: photos[0],
+        photos: photos,
       });
     })
   }
@@ -29,7 +29,6 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <div>Hello from Photos</div>
         <Dots images={this.state.photos} />
         <Main currImage={this.state.photos.frontImg} />
       </div>      
