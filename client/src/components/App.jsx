@@ -1,11 +1,13 @@
 import React from 'react';
 import urlParser from 'url-parse';
+import Main from './Main.jsx';
+import Dots from './Dots.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: null,
+      photos: []
     }
   }
 
@@ -18,17 +20,18 @@ class App extends React.Component {
       return results.json();
     })
     .then((photos) => {
-      console.log(photos);
       this.setState({
         photos: photos[0],
       });
-    });
+    })
   }
 
   render () {
     return (
       <div>
         <div>Hello from Photos</div>
+        <Dots images={this.state.photos} />
+        <Main currImage={this.state.photos.frontImg} />
       </div>      
     )
   }

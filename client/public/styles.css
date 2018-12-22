@@ -1,0 +1,16 @@
+.dots {
+  display: inline;
+  width: 110px;
+}
+.dots ul {
+  display: inline;
+  width: 110px;
+}
+.dots img {
+  height: 100px;
+  border: 1px solid grey;
+  border-radius: 50%;
+}
+.current-img {
+  display: inline;
+}

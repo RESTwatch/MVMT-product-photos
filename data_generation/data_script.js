@@ -10,7 +10,7 @@ const dataScript = (min, max) => {
   watchPhotos.push(
     {
       _id: 100,
-      frontImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_back.jpg',
+      frontImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_front.jpg',
       sideImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_side.jpg',
       backImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_back.jpg',
       box: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/box.jpg',
@@ -28,7 +28,7 @@ const dataScript = (min, max) => {
     watchPhotos.push(
       {
         _id: i,
-        frontImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_back.jpg`,
+        frontImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_front.jpg`,
         sideImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_side.jpg`,
         backImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_back.jpg`,
         box: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/box.jpg',
