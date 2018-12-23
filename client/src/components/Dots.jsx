@@ -1,25 +1,23 @@
 import React from 'react';
 
 const Dots = (props) => (
-  <div className="dots">
-    <ul>
+    <ul className="slick-dots">
       <li>
-        <img src={props.images.frontImg} className="front"/>
+        <img name="frontImg" src={props.images.frontImg} className="front" onClick={props.selectImg} />
       </li>
       <li>
-        <img src={props.images.sideImg} className="side"/>
+        <img name="sideImg" src={props.images.sideImg} className="side" onClick={props.selectImg} />
       </li>
       <li>
-        <img src={props.images.backImg} className="back"/>
+        <img name="backImg" src={props.images.backImg} className="back" onClick={props.selectImg} />
       </li>
       <li>
-        <img src={props.images.box} className="box"/>
+        <img name="box" src={props.images.box} className="box" onClick={props.selectImg} />
       </li>
       <li>
-        <img src={props.images.styleImg} className="style"/>
+        <img name="styleImg" src={props.images.styleImg} className="style" onClick={props.selectImg} />
       </li>
     </ul>
-  </div>
 )
 
 export default Dots;
