@@ -7,8 +7,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: []
+      photos: {},
+      currImage: null,
     }
+    this.selectMainImage = this.selectMainImage.bind(this);
+  }
+
+  selectMainImage (e) {
+    let photoName = e.target.name;
+    this.setState({
+      photos: this.state.photos,
+      currImage: this.state.photos[photoName],
+    });
   }
 
   componentDidMount() {
@@ -21,18 +31,20 @@ class App extends React.Component {
     })
     .then((photos) => {
       this.setState({
-        photos: photos[0],
+        photos: photos,
+        currImage: photos.frontImg,
       });
     })
   }
 
   render () {
     return (
-      <div>
-        <div>Hello from Photos</div>
-        <Dots images={this.state.photos} />
-        <Main currImage={this.state.photos.frontImg} />
-      </div>      
+      <div className="product-left">
+        <div className="product-slider">
+          <Dots images={this.state.photos} selectImg={this.selectMainImage} />
+          <Main currImage={this.state.currImage} />
+        </div>
+      </div>    
     )
   }
 }
