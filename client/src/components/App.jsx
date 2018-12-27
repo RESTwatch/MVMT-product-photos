@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div className="product-left">
         <div className="product-slider">
-          <Dots images={this.state.photos} selectImg={this.selectMainImage} />
+          <Dots photos={this.state.photos} selectImg={this.selectMainImage} />
           <Main currImage={this.state.currImage} />
         </div>
       </div>    

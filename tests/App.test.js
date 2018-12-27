@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from '../client/src/components/App';
 import Main from '../client/src/components/Main';
 import Dots from '../client/src/components/Dots';
 
-describe('App', () => {
+describe('App component', () => {
   it('should have a state for photos and currImg', () => {
     const wrapper = shallow(<App />, {disableLifecycleMethods: true});
     const stateProps = wrapper.state();
