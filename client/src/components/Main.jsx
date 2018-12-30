@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Main = (props) => (
-  <div className="current-img">
-    <img src={props.currImage}/>
+  <div className="photos-current-img">
+    <img className="photos-slider-image" src={props.currImage}/>
   </div>
 )
 

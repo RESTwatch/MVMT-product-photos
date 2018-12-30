@@ -39,11 +39,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="product-left">
-        <div className="product-slider">
+      <div className="photos-product-left">
+        <div className="photos-product-slider">
           <Dots photos={this.state.photos} selectImg={this.selectMainImage} />
           <Main currImage={this.state.currImage} />
         </div>
+        <div className="photos-zoom-box"></div>
       </div>    
     )
   }
