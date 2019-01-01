@@ -51,14 +51,27 @@
   height: 600px;
   width: 600px;
   margin: 0 auto;
+  cursor: zoom-in;
 }
 
-.photos-zoom-box {
+.photos-zoom-box-true {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   right: 0;
+  opacity: 1;
+  z-index: 999;
+  cursor: zoom-out;
+}
+
+.photos-zoom-box-false {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  opacity: 0;
   z-index: -1;
 }
 
