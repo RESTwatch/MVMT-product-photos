@@ -3,6 +3,7 @@ import urlParser from 'url-parse';
 import Main from './Main.jsx';
 import Dots from './Dots.jsx';
 import Zoom from './Zoom.jsx';
+import styles from '../../public/styles.css';
 
 class App extends React.Component {
   constructor(props) {
