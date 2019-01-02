@@ -14,12 +14,12 @@ app.use(morgan('tiny'));
 app.get('/api/watches/:wid/photos', (req, res, next) => {
   const watchId = req.params.wid;
   db.getPhotosById(watchId, (err, results) => {
-      if (err) {
-        next(err);
-      } else {
-        res.status(200).end(JSON.stringify(results));
-      }
-    });
+    if (err) {
+      next(err);
+    } else {
+      res.status(200).end(JSON.stringify(results));
+    }
+  });
 });
 
 app.listen(PORT, () => console.log(`Express is listening on port ${PORT}!`));
