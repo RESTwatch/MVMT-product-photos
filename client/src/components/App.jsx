@@ -51,7 +51,7 @@ class App extends React.Component {
       <div className="photos-product-left">
         <div className="photos-product-slider">
           <Dots photos={this.state.photos} selectImg={this.selectMainImage} />
-          <Main currImage={this.state.currImage} toggleZoom={this.toggleZoom} />
+          <Main currImage={this.state.currImage} zoomed={this.state.zoomToggle} toggleZoom={this.toggleZoom} />
         </div>
         <Zoom currImage={this.state.currImage} zoomed={this.state.zoomToggle} toggleZoom={this.toggleZoom} />
       </div>    

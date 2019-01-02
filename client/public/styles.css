@@ -59,10 +59,18 @@
 }
 
 /*-------- Current Image Display --------*/
-.photos-current-img {
+.photos-current-img-show {
   position: relative;
   display: block;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.photos-current-img-hide {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
   margin: 0;
   padding: 0;
 }

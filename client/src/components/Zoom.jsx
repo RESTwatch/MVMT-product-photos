@@ -12,7 +12,7 @@ class Zoom extends React.Component {
   
   panImage (e) {
     let xPos = -e.clientX / 4;
-    let yPos = -e.clientY;
+    let yPos = -e.clientY / 1.5;
 
     this.setState({
       top: yPos,
