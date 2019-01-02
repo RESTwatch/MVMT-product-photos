@@ -1,10 +1,20 @@
+/*-------- Main App Component --------*/
 .photos-product-left {
   position: relative;
   width: 65%;
+  height: 600px;
+  min-width: 768px;
   padding: 0 .75rem;
   text-align: center;
 }
 
+.photos-product-slider {
+  width: auto;
+  flex-direction: row-reverse;
+  padding-left: 162px;
+}
+
+/*-------- Product Image Dots --------*/
 .photos-slick-dots {
   font-family: "futura-pt",arial,sans-serif;
   display: block;
@@ -17,17 +27,13 @@
   left: 0;
   overflow-y: auto;
   bottom: -45px;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
 }
 
 .photos-slick-dots img {
   height: 80px;
   width: 80px;
-  border: 2px solid;
+  position: relative;
+  display: inline-block;
   border-color: rgba(200,200,200,0.5);
   border-radius: 100%;
   margin-bottom: 12px;
@@ -35,13 +41,26 @@
   transition: all .4s;
   box-shadow: 0px 2px 0px 0px rgba(200,200,200,0.5);
   border: 2px solid transparent;
-  position: relative;
-  display: inline-block;
+}
+.photos-slick-dots img:hover {
+  border: 2px solid;
+  border-color: rgba(200,200,200,0.5);
+  box-shadow: 0px 0px 0px 0px rgba(200,200,200,0.5);  
 }
 
+.photos-see-it-styled {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.38px;
+  color: #2C2C2C;
+  width: auto;
+  height: auto;
+  text-transform: uppercase;
+}
+
+/*-------- Current Image Display --------*/
 .photos-current-img {
-  flex-direction: row-reverse;
-  padding-left: 162px;
+  position: relative;
   display: block;
   overflow: hidden;
   margin: 0;
@@ -52,8 +71,18 @@
   width: 600px;
   margin: 0 auto;
   cursor: zoom-in;
+  transition: all 0.5s ease-in-out;
+}
+.photos-zoom-icon {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 0;
+  right: 0;
+  z-index: 999;
 }
 
+/*-------- Image Zoom Box --------*/
 .photos-zoom-box-true {
   position: absolute;
   width: 100%;
@@ -61,8 +90,9 @@
   top: 0;
   right: 0;
   opacity: 1;
-  z-index: 999;
+  z-index: 998;
   cursor: zoom-out;
+  overflow: hidden;
 }
 
 .photos-zoom-box-false {
@@ -73,16 +103,4 @@
   right: 0;
   opacity: 0;
   z-index: -1;
-}
-
-.photos-see-it-styled {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.38px;
-  color: #2C2C2C;
-  border: none;
-  width: auto;
-  height: auto;
-  box-shadow: none;
-  text-transform: uppercase;
 }
