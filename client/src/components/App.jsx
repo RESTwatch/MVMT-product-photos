@@ -2,6 +2,7 @@ import React from 'react';
 import urlParser from 'url-parse';
 import Main from './Main.jsx';
 import Dots from './Dots.jsx';
+import Zoom from './Zoom.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,8 +10,10 @@ class App extends React.Component {
     this.state = {
       photos: {},
       currImage: null,
+      zoomToggle: false,
     }
     this.selectMainImage = this.selectMainImage.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
   }
 
   selectMainImage (e) {
@@ -18,6 +21,12 @@ class App extends React.Component {
     this.setState({
       photos: this.state.photos,
       currImage: this.state.photos[photoName],
+    });
+  }
+
+  toggleZoom (e) {
+    this.setState({
+      zoomToggle: !this.state.zoomToggle,
     });
   }
 
@@ -39,11 +48,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="product-left">
-        <div className="product-slider">
+      <div className="photos-product-left">
+        <div className="photos-product-slider">
           <Dots photos={this.state.photos} selectImg={this.selectMainImage} />
-          <Main currImage={this.state.currImage} />
+          <Main currImage={this.state.currImage} zoomed={this.state.zoomToggle} toggleZoom={this.toggleZoom} />
         </div>
+        <Zoom currImage={this.state.currImage} zoomed={this.state.zoomToggle} toggleZoom={this.toggleZoom} />
       </div>    
     )
   }
