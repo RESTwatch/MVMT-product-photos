@@ -4,10 +4,9 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/TheEventHandlers/MVMT-summary
+  - https://github.com/TheEventHandlers/MVMT-details-specs
+  - https://github.com/TheEventHandlers/MVMT-reviews
 
 ## Table of Contents
 
@@ -17,7 +16,11 @@
 
 ## Usage
 
-> Some usage instructions
+> To run the app, run the following in the root directory
+- npm install
+- npm run seed-db
+- npm start
+
 
 ## Requirements
 
