@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const { Photos } = require('./schema.js');
 
-const mongoUrl = 'mongodb://database/photos';
+// const mongoUrl = 'mongodb://database/photos';
 
-mongoose.connect(mongoUrl, { useNewUrlParser: true });
+// mongoose.connect(mongoUrl, { useNewUrlParser: true });
+mongoose.connect('mongodb://172.17.0.2/photos', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
