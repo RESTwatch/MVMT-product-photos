@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const photosSchema = new mongoose.Schema({
   _id: Number,
+  name: String,
   frontImg: String,
   sideImg: String,
   backImg: String,

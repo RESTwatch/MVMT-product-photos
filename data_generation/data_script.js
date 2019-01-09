@@ -4,8 +4,8 @@ const { Photos } = require('../db/schema.js');
 // const mongoUrl = 'mongodb://database/photos';
 
 // mongoose.connect(mongoUrl, { useNewUrlParser: true });
-// mongoose.connect('mongodb://localhost/photos', { useNewUrlParser: true });
-mongoose.connect('mongodb://172.17.0.2/photos', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/photos', { useNewUrlParser: true });
+// mongoose.connect('mongodb://172.17.0.2/photos', { useNewUrlParser: true });
 
 
 const dataScript = (min, max) => {
@@ -14,30 +14,40 @@ const dataScript = (min, max) => {
   watchPhotos.push(
     {
       _id: 100,
-      frontImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_front.jpg',
-      sideImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_side.jpg',
-      backImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_back.jpg',
-      box: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/box.jpg',
-      styleImg: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/100_style.jpg',
-    }
+      name: 'Voyager',
+      frontImg: 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/100_front.jpg',
+      sideImg: 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/100_side.jpg',
+      backImg: 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/100_back.jpg',
+      box: 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/box.jpg',
+      styleImg: 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/100_style.jpg',
+    },
   );
 
   for (let i = min; i <= max; i += 1) {
+    let num;
+    const names = ['Voyager', 'Ghost', 'Slate', 'Eclipse', 'Chrono', 'Myst', 'Argo', 'Vice', 'Dune', 'Calypso', 'Rogue', 'Avalon', 'Denali', 'Mariner', 'Maverick', 'Abyss', 'Atlas'];
     const randomPhotoNum = () => {
       const low = 100;
-      const high = 120;
-      return Math.floor(Math.random() * (high - low + 1)) + low;
+      const high = 160;
+      num = Math.floor(Math.random() * (high - low + 1)) + low;
+      return num;
+    };
+
+    const randomArrayElement = (array) => {
+      const idx = Math.floor(Math.random() * array.length);
+      return array[idx];
     };
 
     watchPhotos.push(
       {
         _id: i,
-        frontImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_front.jpg`,
-        sideImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_side.jpg`,
-        backImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_back.jpg`,
-        box: 'https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/box.jpg',
-        styleImg: `https://s3-us-west-1.amazonaws.com/hrsf107-the-event-handlers-mvmt-photos/${randomPhotoNum()}_style.jpg`,
-      }
+        name: randomArrayElement(names),
+        frontImg: `https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${randomPhotoNum()}_front.jpg`,
+        sideImg: `https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_side.jpg`,
+        backImg: `https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_back.jpg`,
+        box: 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/box.jpg',
+        styleImg: `https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_style.jpg`,
+      },
     );
   }
   return watchPhotos;

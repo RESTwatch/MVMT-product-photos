@@ -24,4 +24,44 @@ app.get('/api/watches/:wid/photos', (req, res, next) => {
   });
 });
 
+// Route to create a new record
+app.post('/api/watches/:wid/:name', (req, res) => {
+  const watchId = req.params.wid;
+  const watchName = req.params.name;
+  db.addPhotos(watchId, watchName, (err) => {
+    if (err) {
+      res.send(404).end();
+    } else {
+      res.send(`Successful post of watch ${watchId}`);
+    }
+  });
+});
+
+// Route to update a record
+app.put('/api/watches/:wid/:imgName=:pid', (req, res) => {
+  const watchId = req.params.wid;
+  const image = req.params.imgName;
+  const photoId = req.params.pid;
+  const photo = `https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${photoId}_side.jpg`;
+  db.updatePhoto(watchId, image, photo, (err) => {
+    if (err) {
+      res.send(404).end();
+    } else {
+      res.send(`Successful update of watch ${watchId}`);
+    }
+  });
+});
+
+// Route to delete a record
+app.delete('/api/watches/:wid', (req, res) => {
+  const watchId = req.params.wid;
+  db.deletePhotosById(watchId, (err) => {
+    if (err) {
+      res.send(404).end();
+    } else {
+      res.send(`Successful deletion of watch ${watchId}`);
+    }
+  });
+});
+
 app.listen(PORT, () => console.log(`Express is listening on port ${PORT}!`));
