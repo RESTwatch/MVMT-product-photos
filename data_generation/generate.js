@@ -3,7 +3,6 @@ const path = require('path');
 
 let currentId = 1;
 let num;
-const names = ['Voyager', 'Ghost', 'Slate', 'Eclipse', 'Chrono', 'Myst', 'Argo', 'Vice', 'Dune', 'Calypso', 'Rogue', 'Avalon', 'Denali', 'Mariner', 'Maverick', 'Abyss', 'Atlas'];
 const start = new Date().getTime();
 
 const randomPhotoNum = (id) => {
@@ -17,13 +16,8 @@ const randomPhotoNum = (id) => {
   return num;
 };
 
-const randomArrayElement = (array) => {
-  const idx = Math.floor(Math.random() * array.length);
-  return array[idx];
-};
-
 const csvGenerate = (id) => {
-  const row = `${id},${randomArrayElement(names)},https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${randomPhotoNum(id)}_front.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_side.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_back.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/box.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_style.jpg\n`;
+  const row = `${id},watch${id},https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${randomPhotoNum(id)}_front.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_side.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_back.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/box.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_style.jpg\n`;
   const csvOutput = id === 1
     ? `id,name,frontImg,sideImg,backImg,box,styleImg\n${row}`
     : `${row}`;
