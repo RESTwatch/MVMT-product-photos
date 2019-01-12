@@ -1,0 +1,2 @@
+USE watches;
+COPY watches.photos (id, name, frontImg, sideImg, backImg, box, styleImg) FROM '/Users/meganhr/SDC/photos-service/MVMT-product-photos/data_generation/data/photo_data.csv' WITH DELIMITER=',' AND HEADER=TRUE;
