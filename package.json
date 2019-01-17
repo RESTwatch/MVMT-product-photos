@@ -15,6 +15,7 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "seed-mongo": "node data_generation/seed_mongo.js",
+    "stress-test": "k6 run --duration 5m --rps 1000 --vus 200 pg_stresstest.js",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage --colors"
@@ -30,6 +31,7 @@
     "jquery-zoom": "^1.7.21",
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",
+    "newrelic": "^5.0.0",
     "pg": "^7.8.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

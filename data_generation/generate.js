@@ -1,7 +1,7 @@
 const fs = require('graceful-fs');
 const path = require('path');
 
-let currentId = 1;
+let currentId = 100;
 let num;
 const start = new Date().getTime();
 
@@ -18,7 +18,7 @@ const randomPhotoNum = (id) => {
 
 const csvGenerate = (id) => {
   const row = `${id},watch${id},https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${randomPhotoNum(id)}_front.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_side.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_back.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/box.jpg,https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_style.jpg\n`;
-  const csvOutput = id === 1
+  const csvOutput = id === 100
     ? `id,name,frontImg,sideImg,backImg,box,styleImg\n${row}`
     : `${row}`;
   currentId += 1;
@@ -44,7 +44,7 @@ const generateData = (entries) => {
     }
   };
 
-  writeData(0);
+  writeData(99);
 };
 
-generateData(10000001);
+generateData(10000101);

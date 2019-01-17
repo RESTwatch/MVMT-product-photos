@@ -47,9 +47,9 @@ const deletePhotosById = (watchId, callback) => {
   Photos.deleteOne({ _id: Number(watchId) }, callback);
 };
 
-module.exports = {
-  getPhotosById,
-  addPhotos,
-  updatePhoto,
-  deletePhotosById,
-};
+// module.exports = {
+//   getPhotosById,
+//   addPhotos,
+//   updatePhoto,
+//   deletePhotosById,
+// };

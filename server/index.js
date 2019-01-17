@@ -1,8 +1,9 @@
 // Setup express and define port
+require('newrelic');
 const express = require('express');
 const compression = require('compression');
 const morgan = require('morgan');
-const db = require('../db/index.js');
+const db = require('../db/postgres/index.js');
 
 const app = express();
 const PORT = 3001;
@@ -13,11 +14,11 @@ app.use('/watches/:wid', express.static('client/public'));
 app.use(morgan('tiny'));
 
 // Route to return all records
-app.get('/api/watches/:wid/photos', (req, res, next) => {
+app.get('/api/watches/:wid/photos', (req, res) => {
   const watchId = req.params.wid;
   db.getPhotosById(watchId, (err, results) => {
     if (err) {
-      next(err);
+      res.status(404).end();
     } else {
       res.status(200).end(JSON.stringify(results));
     }
@@ -30,9 +31,9 @@ app.post('/api/watches/:wid/:name', (req, res) => {
   const watchName = req.params.name;
   db.addPhotos(watchId, watchName, (err) => {
     if (err) {
-      res.send(404).end();
+      res.status(404).end();
     } else {
-      res.send(`Successful post of watch ${watchId}`);
+      res.status(201).send(`Successful post of watch ${watchId}`);
     }
   });
 });
@@ -45,9 +46,9 @@ app.put('/api/watches/:wid/:imgName=:pid', (req, res) => {
   const photo = `https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${photoId}_side.jpg`;
   db.updatePhoto(watchId, image, photo, (err) => {
     if (err) {
-      res.send(404).end();
+      res.status(404).end();
     } else {
-      res.send(`Successful update of watch ${watchId}`);
+      res.status(200).send(`Successful update of watch ${watchId}`);
     }
   });
 });
@@ -57,9 +58,9 @@ app.delete('/api/watches/:wid', (req, res) => {
   const watchId = req.params.wid;
   db.deletePhotosById(watchId, (err) => {
     if (err) {
-      res.send(404).end();
+      res.status(404).end();
     } else {
-      res.send(`Successful deletion of watch ${watchId}`);
+      res.status(410).send(`Successful deletion of watch ${watchId}`);
     }
   });
 });
