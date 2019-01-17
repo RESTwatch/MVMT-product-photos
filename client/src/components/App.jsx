@@ -33,7 +33,8 @@ class App extends React.Component {
 
   componentDidMount() {
     let pathname = urlParser().pathname;
-    let watchId = Number(pathname.slice(pathname.length - 4, pathname.length -1));
+    // let watchId = Number(pathname.slice(pathname.length - 4, pathname.length -1));
+    let watchId = Number(pathname.split('/')[2]);
     
     fetch(`/api/watches/${watchId}/photos`)
     .then((results) => {
