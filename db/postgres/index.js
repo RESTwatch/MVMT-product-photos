@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 const config = require('../../config');
+const redis = require('../redis/index');
 
 const client = new Client({
   host: 'localhost',
@@ -18,23 +19,34 @@ client.connect((err) => {
 });
 
 // DB FUNCTIONS
+
 const getPhotosById = (id, callback) => {
-  const queryString = `select * from photos where id = ${id}`;
-  client.query(queryString, (err, results) => {
-    if (err) {
-      callback(err);
-    } else {
-      const data = {
-        id: results.rows[0].id,
-        frontImg: results.rows[0].frontimg,
-        sideImg: results.rows[0].sideimg,
-        backImg: results.rows[0].backimg,
-        box: results.rows[0].box,
-        styleImg: results.rows[0].styleimg,
-      };
-      callback(null, data);
-    }
-  });
+  if (id < 100 || id > 10000000) {
+    callback('Please input a valid id from 100 to 10,000,000');
+  } else {
+    redis.getRedis(id, (error, response) => {
+      if (error || response === null) {
+        const queryString = `select * from photos where id = ${id}`;
+        client.query(queryString, (err, pgres) => {
+          if (err) {
+            callback(err);
+          } else {
+            const data = {
+              id: pgres.rows[0].id,
+              frontImg: pgres.rows[0].frontimg,
+              sideImg: pgres.rows[0].sideimg,
+              backImg: pgres.rows[0].backimg,
+              box: pgres.rows[0].box,
+              styleImg: pgres.rows[0].styleimg,
+            };
+            redis.setRedis(data.id, data, callback);
+          }
+        });
+      } else {
+        callback(null, response);
+      }
+    });
+  }
 };
 
 const addPhotos = (id, name, callback) => {
