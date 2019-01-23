@@ -1,20 +1,24 @@
-const { Client } = require('pg');
-const config = require('../../config');
+// const { Client } = require('pg');
+const { Pool } = require('pg');
+// const config = require('../../config');
 const redis = require('../redis/index');
 
-const client = new Client({
-  host: 'localhost',
+const pool = new Pool({
+  host: '3.84.32.241',
   port: 5432,
   user: 'postgres',
-  password: config.postgresPassword,
+  password: 'student',
   database: 'postgres',
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
 
-client.connect((err) => {
+pool.connect((err) => {
   if (err) {
     console.error('connection error', err.stack);
   } else {
-    console.log('connected');
+    console.log('connected to postgres');
   }
 });
 
@@ -27,7 +31,7 @@ const getPhotosById = (id, callback) => {
     redis.getRedis(id, (error, response) => {
       if (error || response === null) {
         const queryString = `select * from photos where id = ${id}`;
-        client.query(queryString, (err, pgres) => {
+        pool.query(queryString, (err, pgres) => {
           if (err) {
             callback(err);
           } else {
@@ -58,7 +62,7 @@ const addPhotos = (id, name, callback) => {
     return num;
   };
   const queryString = `insert into photos (id, name, frontImg, sideImg, backImg, box, styleImg) VALUES (${id}, '${name}', 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${randomPhotoNum()}_front.jpg', 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_side.jpg', 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_back.jpg', 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/box.jpg', 'https://s3-us-west-1.amazonaws.com/restwatch-product-photos/${num}_style.jpg')`;
-  client.query(queryString, (err) => {
+  pool.query(queryString, (err) => {
     if (err) {
       callback(err);
     } else {
@@ -69,7 +73,7 @@ const addPhotos = (id, name, callback) => {
 
 const updatePhoto = (id, property, value, callback) => {
   const queryString = `update photos set ${property} = '${value}' where id = ${id}`;
-  client.query(queryString, (err) => {
+  pool.query(queryString, (err) => {
     if (err) {
       callback(err);
     } else {
@@ -80,7 +84,7 @@ const updatePhoto = (id, property, value, callback) => {
 
 const deletePhotosById = (id, callback) => {
   const queryString = `delete from photos where id = ${id}`;
-  client.query(queryString, (err) => {
+  pool.query(queryString, (err) => {
     if (err) {
       callback(err);
     } else {
