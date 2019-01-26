@@ -1,25 +1,20 @@
-// const { Client } = require('pg');
 const { Pool } = require('pg');
-// const config = require('../../config');
+const config = require('../../config');
 const redis = require('../redis/index');
 
 const pool = new Pool({
   host: '3.84.32.241',
   port: 5432,
   user: 'postgres',
-  password: 'student',
+  password: config.postgresPassword,
   database: 'postgres',
   max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  idleTimeoutMillis: 1000,
+  connectionTimeoutMillis: 1000,
 });
 
-pool.connect((err) => {
-  if (err) {
-    console.error('connection error', err.stack);
-  } else {
-    console.log('connected to postgres');
-  }
+pool.on('error', () => {
+  process.exit(-1);
 });
 
 // DB FUNCTIONS
@@ -31,21 +26,25 @@ const getPhotosById = (id, callback) => {
     redis.getRedis(id, (error, response) => {
       if (error || response === null) {
         const queryString = `select * from photos where id = ${id}`;
-        pool.query(queryString, (err, pgres) => {
-          if (err) {
-            callback(err);
-          } else {
-            const data = {
-              id: pgres.rows[0].id,
-              frontImg: pgres.rows[0].frontimg,
-              sideImg: pgres.rows[0].sideimg,
-              backImg: pgres.rows[0].backimg,
-              box: pgres.rows[0].box,
-              styleImg: pgres.rows[0].styleimg,
-            };
-            redis.setRedis(data.id, data, callback);
-          }
-        });
+        pool.connect()
+          .then(async (client) => {
+            try {
+              const pgres = await client.query(queryString);
+              const data = {
+                id: pgres.rows[0].id,
+                frontImg: pgres.rows[0].frontimg,
+                sideImg: pgres.rows[0].sideimg,
+                backImg: pgres.rows[0].backimg,
+                box: pgres.rows[0].box,
+                styleImg: pgres.rows[0].styleimg,
+              };
+              client.release();
+              redis.setRedis(data.id, data, callback);
+            } catch (err) {
+              client.release();
+              callback(err);
+            }
+          });
       } else {
         callback(null, response);
       }

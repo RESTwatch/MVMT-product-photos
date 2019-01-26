@@ -1,6 +1,6 @@
 # Project Name
 
-> Project description
+> An implementation of a watch product app.
 
 ## Related Projects
 
@@ -18,8 +18,9 @@
 
 > To run the app, run the following in the root directory
 - npm install
-- npm run seed-db
-- npm start
+- npm run generate
+- npm run seed-postgres
+- npm run server-dev
 
 
 ## Requirements
